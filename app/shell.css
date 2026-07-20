@@ -159,6 +159,27 @@
 
 .stack > * + * { margin-top: 16px; }
 
+/* ---------- Cockpit Layout mit fixierter To-do-Spalte ---------- */
+.cockpit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 20px;
+  align-items: start; /* wichtig, damit sticky in der Zelle wandern kann */
+}
+.cockpit-main { min-width: 0; }
+.cockpit-aside {
+  position: sticky;
+  top: 82px; /* Topbar (62px) + Abstand */
+}
+.cockpit-aside .todos { display: flex; flex-direction: column; max-height: calc(100vh - 102px); }
+.cockpit-aside .todo-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; margin-top: 4px; }
+
+@media (max-width: 900px) {
+  .cockpit-grid { grid-template-columns: 1fr; }
+  .cockpit-aside { position: static; top: auto; }
+  .cockpit-aside .todos { max-height: none; }
+}
+
 /* ---------- Cockpit To-do-Liste ---------- */
 .todos-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
 .todos-count {

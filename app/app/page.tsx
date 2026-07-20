@@ -69,73 +69,77 @@ export default async function Cockpit() {
         <p>Alle Kunden auf einen Blick – Status, Paket und offene Aufgaben.</p>
       </div>
 
-      <div className="grid grid-3" style={{ marginBottom: 16 }}>
-        <div className="panel">
-          <div className="kpi-l">Mandanten gesamt</div>
-          <div className="kpi-v">{clients.length}</div>
-        </div>
-        <div className="panel">
-          <div className="kpi-l">Aktiv</div>
-          <div className="kpi-v">{activeCount}</div>
-        </div>
-        <div className="panel">
-          <div className="kpi-l">Offene Aufgaben</div>
-          <div className="kpi-v">{openTotal}</div>
-        </div>
-      </div>
-
-      <div className="panel">
-        {clients.length === 0 ? (
-          <div className="empty">
-            <div className="icon">◔</div>
-            <h3>Noch keine Mandanten</h3>
-            <p>
-              Sobald ein Deal gewonnen und zum Mandanten wird, erscheint er hier.
-              Leads laufen bis dahin im Akquise-Modul.
-            </p>
+      <div className="cockpit-grid">
+        <div className="cockpit-main">
+          <div className="grid grid-3" style={{ marginBottom: 16 }}>
+            <div className="panel">
+              <div className="kpi-l">Mandanten gesamt</div>
+              <div className="kpi-v">{clients.length}</div>
+            </div>
+            <div className="panel">
+              <div className="kpi-l">Aktiv</div>
+              <div className="kpi-v">{activeCount}</div>
+            </div>
+            <div className="panel">
+              <div className="kpi-l">Offene Aufgaben</div>
+              <div className="kpi-v">{openTotal}</div>
+            </div>
           </div>
-        ) : (
-          <table className="tbl">
-            <thead>
-              <tr>
-                <th>Agentur</th>
-                <th className="hide-sm">Paket</th>
-                <th className="hide-sm">Volumen</th>
-                <th>Status</th>
-                <th>Offen</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clients.map((c) => {
-                const name = c.deal?.company?.name ?? "Unbenannt";
-                const domain = c.deal?.company?.domain ?? "—";
-                const status = c.onboarding_status;
-                return (
-                  <tr key={c.id}>
-                    <td className="agency">
-                      {name}
-                      <span className="dom">{domain}</span>
-                    </td>
-                    <td className="hide-sm">{c.deal?.paket ?? "—"}</td>
-                    <td className="hide-sm num">
-                      {c.deal?.wert != null ? euro.format(c.deal.wert) : "—"}
-                    </td>
-                    <td>
-                      <span className={`badge ${status}`}>
-                        {STATUS_LABEL[status] ?? status}
-                      </span>
-                    </td>
-                    <td className="num">{openByClient.get(c.id) ?? 0}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        )}
-      </div>
 
-      <div style={{ marginTop: 16 }}>
-        <CockpitTodos initial={todos} />
+          <div className="panel">
+            {clients.length === 0 ? (
+              <div className="empty">
+                <div className="icon">◔</div>
+                <h3>Noch keine Mandanten</h3>
+                <p>
+                  Sobald ein Deal gewonnen und zum Mandanten wird, erscheint er
+                  hier. Leads laufen bis dahin im Akquise-Modul.
+                </p>
+              </div>
+            ) : (
+              <table className="tbl">
+                <thead>
+                  <tr>
+                    <th>Agentur</th>
+                    <th className="hide-sm">Paket</th>
+                    <th className="hide-sm">Volumen</th>
+                    <th>Status</th>
+                    <th>Offen</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clients.map((c) => {
+                    const name = c.deal?.company?.name ?? "Unbenannt";
+                    const domain = c.deal?.company?.domain ?? "—";
+                    const status = c.onboarding_status;
+                    return (
+                      <tr key={c.id}>
+                        <td className="agency">
+                          {name}
+                          <span className="dom">{domain}</span>
+                        </td>
+                        <td className="hide-sm">{c.deal?.paket ?? "—"}</td>
+                        <td className="hide-sm num">
+                          {c.deal?.wert != null ? euro.format(c.deal.wert) : "—"}
+                        </td>
+                        <td>
+                          <span className={`badge ${status}`}>
+                            {STATUS_LABEL[status] ?? status}
+                          </span>
+                        </td>
+                        <td className="num">{openByClient.get(c.id) ?? 0}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+
+        <aside className="cockpit-aside">
+          <CockpitTodos initial={todos} />
+        </aside>
       </div>
     </main>
   );
