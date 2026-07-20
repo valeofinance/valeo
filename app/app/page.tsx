@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import CockpitTodos, { type Todo } from "./CockpitTodos";
 
 // Team-Cockpit: Übersicht über alle Mandanten (§ 5.5). Staff sieht per RLS
 // alles. Datenmodell siehe supabase/migrations/0001_core_schema.sql.
@@ -30,18 +31,24 @@ type CockpitClient = {
 export default async function Cockpit() {
   const supabase = await createClient();
 
-  const [{ data: clientsData }, { data: tasksData }] = await Promise.all([
-    supabase
-      .from("clients")
-      .select(
-        "id, onboarding_status, deal:deals ( paket, wert, company:companies ( name, domain ) )"
-      )
-      .order("created_at", { ascending: true }),
-    supabase.from("tasks").select("client_id, status"),
-  ]);
+  const [{ data: clientsData }, { data: tasksData }, { data: todosData }] =
+    await Promise.all([
+      supabase
+        .from("clients")
+        .select(
+          "id, onboarding_status, deal:deals ( paket, wert, company:companies ( name, domain ) )"
+        )
+        .order("created_at", { ascending: true }),
+      supabase.from("tasks").select("client_id, status"),
+      supabase
+        .from("cockpit_todos")
+        .select("id, title, status, created_at")
+        .order("created_at", { ascending: true }),
+    ]);
 
   const clients = (clientsData ?? []) as unknown as CockpitClient[];
   const tasks = (tasksData ?? []) as { client_id: string; status: string }[];
+  const todos = (todosData ?? []) as Todo[];
 
   const openByClient = new Map<string, number>();
   for (const t of tasks) {
@@ -125,6 +132,10 @@ export default async function Cockpit() {
             </tbody>
           </table>
         )}
+      </div>
+
+      <div style={{ marginTop: 16 }}>
+        <CockpitTodos initial={todos} />
       </div>
     </main>
   );

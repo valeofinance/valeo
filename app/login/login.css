@@ -18,10 +18,11 @@
   font-family: var(--font-plex-sans), sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(48rem 34rem at 78% -8%, rgba(33, 65, 240, 0.16), transparent 60%),
-    radial-gradient(42rem 30rem at -10% 20%, rgba(14, 122, 71, 0.12), transparent 58%),
-    radial-gradient(40rem 32rem at 60% 110%, rgba(33, 65, 240, 0.12), transparent 62%),
-    var(--paper);
+    radial-gradient(40rem 34rem at 12% 4%, rgba(33, 65, 240, 0.34), transparent 55%),
+    radial-gradient(34rem 30rem at 90% 6%, rgba(122, 92, 255, 0.30), transparent 55%),
+    radial-gradient(42rem 38rem at 82% 92%, rgba(14, 122, 71, 0.26), transparent 55%),
+    radial-gradient(40rem 36rem at 8% 96%, rgba(80, 120, 255, 0.28), transparent 55%),
+    linear-gradient(160deg, #eaf0fb, var(--paper) 55%, #eaf3ee);
   -webkit-font-smoothing: antialiased;
 }
 .auth ::selection { background: var(--accent); color: #fff; }
@@ -34,11 +35,11 @@
   border-radius: 22px;
   padding: 40px 36px 34px;
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.10) 45%, rgba(255, 255, 255, 0.30)),
-    rgba(255, 255, 255, 0.42);
-  -webkit-backdrop-filter: blur(26px) saturate(1.8);
-  backdrop-filter: blur(26px) saturate(1.8);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+    linear-gradient(155deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.08) 46%, rgba(255, 255, 255, 0.26)),
+    rgba(255, 255, 255, 0.18);
+  -webkit-backdrop-filter: blur(34px) saturate(2.1);
+  backdrop-filter: blur(34px) saturate(2.1);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
     inset 0 -1px 0 rgba(15, 21, 18, 0.05),
