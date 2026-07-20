@@ -1,96 +1,12 @@
-"use client";
+import { redirect } from "next/navigation";
+import { getSessionRole } from "@/lib/auth";
+import LoginView from "./login-view";
 
-import { useState, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
-import "./login.css";
-
-function LoginForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
-
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setError("Anmeldung fehlgeschlagen. E-Mail oder Passwort prüfen.");
-      setLoading(false);
-      return;
-    }
-
-    router.push(searchParams.get("next") ?? "/app");
-    router.refresh();
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className="field">
-        <label htmlFor="email">E-Mail</label>
-        <input
-          id="email"
-          type="email"
-          required
-          autoComplete="email"
-          placeholder="name@agentur.de"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className="field">
-        <label htmlFor="password">Passwort</label>
-        <input
-          id="password"
-          type="password"
-          required
-          autoComplete="current-password"
-          placeholder="••••••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      {error && <p className="error">{error}</p>}
-      <button type="submit" className="submit" disabled={loading}>
-        {loading ? "Anmelden …" : "Anmelden"}
-      </button>
-    </form>
-  );
-}
-
-export default function LoginPage() {
-  return (
-    <main className="auth">
-      <div className="auth-card">
-        <Link href="/" className="auth-brand">
-          VALE<span>O</span>
-        </Link>
-        <p className="auth-sub">Mandanten- &amp; Team-Zugang</p>
-
-        <h1>Willkommen zurück</h1>
-        <p className="auth-lead">
-          Melde dich an, um dein Finanz-Cockpit zu öffnen.
-        </p>
-
-        <Suspense>
-          <LoginForm />
-        </Suspense>
-
-        <p className="auth-foot">
-          Noch kein Zugang? <Link href="/#termin">Erstgespräch buchen</Link>
-        </p>
-      </div>
-    </main>
-  );
+// Server-seitige Rollen-Weiche: wer schon eingeloggt ist, landet direkt
+// im richtigen Bereich. Sonst wird das Login-Formular gezeigt.
+export default async function LoginPage() {
+  const { role } = await getSessionRole();
+  if (role === "staff") redirect("/app");
+  if (role === "client") redirect("/portal");
+  return <LoginView />;
 }
