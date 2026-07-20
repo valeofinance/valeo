@@ -63,10 +63,10 @@
   display: block;
   text-align: center;
   font-family: var(--font-archivo), sans-serif;
-  font-weight: 800;
+  font-weight: 750;
   font-stretch: 110%;
   font-size: 1.5rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.1em;
   color: var(--ink);
   text-decoration: none;
   margin-bottom: 6px;

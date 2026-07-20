@@ -27,24 +27,17 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  // Wichtig: getUser() validiert das Token gegen Supabase und
-  // refresht abgelaufene Sessions (Cookie-Update über setAll).
+  // getUser() validiert das Token gegen Supabase und refresht abgelaufene
+  // Sessions. Rollen-Weiche (staff vs. client) läuft in den Layouts, nicht
+  // hier – Middleware bleibt auf "eingeloggt ja/nein" beschränkt.
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isProtected = request.nextUrl.pathname.startsWith("/app");
-  if (isProtected && !user) {
+  if (!user) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("next", request.nextUrl.pathname);
-    return NextResponse.redirect(url);
-  }
-
-  if (request.nextUrl.pathname === "/login" && user) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/app";
-    url.search = "";
     return NextResponse.redirect(url);
   }
 
@@ -52,5 +45,6 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/app/:path*", "/login"],
+  // Nur die geschützten Bereiche. /login regelt seine Rollen-Weiche selbst.
+  matcher: ["/app/:path*", "/portal/:path*"],
 };
