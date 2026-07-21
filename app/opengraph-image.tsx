@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
 // Branded Link-Vorschau (WhatsApp, LinkedIn, iMessage …). 1200×630.
+// Hell/einladend, passend zur Landingpage.
 export const alt = "Valeo – Externer CFO für digitale Agenturen";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -16,10 +17,10 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "84px 88px",
-          backgroundColor: "#0f1512",
+          backgroundColor: "#F6F7F4",
           backgroundImage:
-            "radial-gradient(900px 500px at 85% -10%, rgba(33,65,240,0.30), transparent 60%), radial-gradient(800px 500px at 0% 110%, rgba(14,122,71,0.22), transparent 60%)",
-          color: "#EDEFEA",
+            "radial-gradient(820px 520px at 88% -12%, rgba(33,65,240,0.16), transparent 62%), radial-gradient(720px 500px at -6% 112%, rgba(14,122,71,0.12), transparent 60%)",
+          color: "#0F1512",
           fontFamily: "sans-serif",
         }}
       >
@@ -28,7 +29,7 @@ export default function OpengraphImage() {
             fontSize: 26,
             letterSpacing: 6,
             textTransform: "uppercase",
-            color: "#8FA0FF",
+            color: "#2141F0",
             fontWeight: 600,
           }}
         >
@@ -38,14 +39,14 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", alignItems: "center", fontSize: 150, fontWeight: 800, letterSpacing: 6 }}>
             <span>VALE</span>
-            <span style={{ color: "#4D6BFF" }}>O</span>
+            <span style={{ color: "#2141F0" }}>O</span>
           </div>
-          <div style={{ fontSize: 46, color: "#C6CCC4", marginTop: 8, maxWidth: 900, lineHeight: 1.2 }}>
+          <div style={{ fontSize: 46, color: "#4A544E", marginTop: 8, maxWidth: 900, lineHeight: 1.2 }}>
             Dein Steuerberater schaut zurück. Wir schauen nach vorn.
           </div>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 26, color: "#8A938C" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 26, color: "#4A544E" }}>
           <span>valeo-finance.de</span>
           <span>100% digital · Ein Ansprechpartner</span>
         </div>
