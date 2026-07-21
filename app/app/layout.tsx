@@ -26,6 +26,10 @@ export default async function AppLayout({
             </span>
             <span className="area">Team-Cockpit</span>
           </Link>
+          <nav className="shell-nav">
+            <Link href="/app">Mandanten</Link>
+            <Link href="/app/finanzen">Finanzen</Link>
+          </nav>
           <div className="shell-user">
             <span className="who">{user.email}</span>
             <form action={signOut}>

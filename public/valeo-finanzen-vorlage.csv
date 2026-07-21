@@ -1,0 +1,25 @@
+statement,section,code,label,period,amount
+income,Erträge,4000,Umsatzerlöse,2026-04,182000
+income,Erträge,4000,Umsatzerlöse,2026-05,196500
+income,Erträge,4000,Umsatzerlöse,2026-06,208400
+income,Materialaufwand,5000,Fremdleistungen,2026-04,-42000
+income,Materialaufwand,5000,Fremdleistungen,2026-05,-46800
+income,Materialaufwand,5000,Fremdleistungen,2026-06,-49200
+income,Personalaufwand,6000,Löhne und Gehälter,2026-04,-84000
+income,Personalaufwand,6000,Löhne und Gehälter,2026-05,-86100
+income,Personalaufwand,6000,Löhne und Gehälter,2026-06,-86100
+income,Sonstiger Aufwand,6800,Sonstige betriebliche Aufwendungen,2026-04,-18500
+income,Sonstiger Aufwand,6800,Sonstige betriebliche Aufwendungen,2026-05,-19200
+income,Sonstiger Aufwand,6800,Sonstige betriebliche Aufwendungen,2026-06,-20100
+income,Abschreibungen,6200,Abschreibungen auf Sachanlagen,2026-04,-3200
+income,Abschreibungen,6200,Abschreibungen auf Sachanlagen,2026-05,-3200
+income,Abschreibungen,6200,Abschreibungen auf Sachanlagen,2026-06,-3200
+balance,Aktiva,1200,Bank,2026-06,248400
+balance,Aktiva,1400,Forderungen aus L+L,2026-06,96500
+balance,Aktiva,0500,Sachanlagen,2026-06,74000
+balance,Passiva,2000,Eigenkapital,2026-06,-286300
+balance,Passiva,1600,Verbindlichkeiten aus L+L,2026-06,-84200
+balance,Passiva,1700,Sonstige Verbindlichkeiten,2026-06,-48400
+cashflow,Operativ,,Cashflow aus laufender Geschäftstätigkeit,2026-06,41200
+cashflow,Investition,,Cashflow aus Investitionstätigkeit,2026-06,-8600
+cashflow,Finanzierung,,Cashflow aus Finanzierungstätigkeit,2026-06,-12000
