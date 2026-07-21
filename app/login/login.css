@@ -17,12 +17,13 @@
   padding: 32px 24px;
   font-family: var(--font-plex-sans), sans-serif;
   color: var(--ink);
+  /* Heller, einladender Grund passend zu Landingpage und App-Bereich. */
   background:
-    radial-gradient(40rem 34rem at 12% 4%, rgba(33, 65, 240, 0.34), transparent 55%),
-    radial-gradient(34rem 30rem at 90% 6%, rgba(122, 92, 255, 0.30), transparent 55%),
-    radial-gradient(42rem 38rem at 82% 92%, rgba(14, 122, 71, 0.26), transparent 55%),
-    radial-gradient(40rem 36rem at 8% 96%, rgba(80, 120, 255, 0.28), transparent 55%),
-    linear-gradient(160deg, #eaf0fb, var(--paper) 55%, #eaf3ee);
+    radial-gradient(40rem 34rem at 10% 2%, rgba(33, 65, 240, 0.12), transparent 55%),
+    radial-gradient(34rem 30rem at 92% 6%, rgba(124, 96, 246, 0.10), transparent 55%),
+    radial-gradient(42rem 38rem at 84% 94%, rgba(14, 122, 71, 0.07), transparent 55%),
+    radial-gradient(40rem 36rem at 8% 96%, rgba(80, 120, 255, 0.10), transparent 55%),
+    linear-gradient(160deg, #ffffff, #fafcff 55%, #ffffff);
   -webkit-font-smoothing: antialiased;
 }
 .auth ::selection { background: var(--accent); color: #fff; }
