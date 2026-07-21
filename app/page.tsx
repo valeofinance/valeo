@@ -519,8 +519,8 @@ export default function Home() {
             © 2026 Valeo [GmbH i.G.] · Finanzen in Topform.
           </span>
           <span className="links">
-            <a href="#">Impressum</a>
-            <a href="#">Datenschutz</a>
+            <Link href="/impressum">Impressum</Link>
+            <Link href="/datenschutz">Datenschutz</Link>
             <a href="mailto:hallo@valeo.finance">hallo@valeo.finance</a>
           </span>
         </div>

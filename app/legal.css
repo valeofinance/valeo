@@ -1,0 +1,78 @@
+/* Schlichte, gut lesbare Rechts-/Inhaltsseiten im Valeo-Look. */
+
+.legal {
+  --paper: #f6f7f4;
+  --ink: #0f1512;
+  --ink-soft: #4a544e;
+  --line: #dfe3db;
+  --accent: #2141f0;
+
+  min-height: 100vh;
+  font-family: var(--font-plex-sans), sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(40rem 30rem at 90% -8%, rgba(33, 65, 240, 0.10), transparent 60%),
+    radial-gradient(36rem 28rem at -8% 8%, rgba(14, 122, 71, 0.08), transparent 58%),
+    var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+.legal-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(246, 247, 244, 0.7);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+.legal-nav-inner {
+  max-width: 46rem; margin: 0 auto; padding: 0 24px;
+  height: 62px; display: flex; align-items: center; justify-content: space-between;
+}
+.legal-wm {
+  font-family: var(--font-archivo), sans-serif; font-weight: 750; font-stretch: 110%;
+  font-size: 1.2rem; letter-spacing: 0.1em; color: var(--ink); text-decoration: none;
+}
+.legal-wm span { color: var(--accent); }
+.legal-back { font-size: 0.9rem; color: var(--ink-soft); text-decoration: none; }
+.legal-back:hover { color: var(--ink); }
+
+.legal-main { max-width: 46rem; margin: 0 auto; padding: 48px 24px 80px; }
+.legal-main h1 {
+  font-family: var(--font-archivo), sans-serif; font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: -0.015em; margin-bottom: 8px;
+}
+.legal-updated {
+  font-family: var(--font-plex-mono), monospace; font-size: 0.72rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft);
+  margin-bottom: 32px;
+}
+.legal-main h2 {
+  font-family: var(--font-archivo), sans-serif; font-weight: 700;
+  font-size: 1.25rem; margin: 36px 0 12px; letter-spacing: -0.01em;
+}
+.legal-main h3 { font-weight: 600; font-size: 1.02rem; margin: 22px 0 8px; }
+.legal-main p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 14px; }
+.legal-main ul { color: var(--ink-soft); line-height: 1.65; margin: 0 0 14px 1.1rem; }
+.legal-main li { margin-bottom: 6px; }
+.legal-main a { color: var(--accent); text-decoration: none; }
+.legal-main a:hover { text-decoration: underline; }
+.legal-main strong { color: var(--ink); font-weight: 600; }
+
+/* Auszufüllende Platzhalter deutlich markieren */
+.legal-main .ph {
+  background: rgba(33, 65, 240, 0.08); color: var(--accent);
+  padding: 1px 6px; border-radius: 5px; font-size: 0.92em;
+  font-family: var(--font-plex-mono), monospace;
+}
+
+.legal-note {
+  margin: 8px 0 28px; padding: 14px 16px; border-radius: 12px;
+  background: rgba(33, 65, 240, 0.06); border: 1px solid rgba(33, 65, 240, 0.18);
+  font-size: 0.88rem; color: var(--ink-soft);
+}
+
+.legal-foot {
+  border-top: 1px solid var(--line); margin-top: 48px; padding-top: 20px;
+  font-size: 0.82rem; color: var(--ink-soft);
+}
+.legal-foot a { color: var(--ink-soft); text-decoration: none; margin-right: 18px; }
+.legal-foot a:hover { color: var(--ink); }
