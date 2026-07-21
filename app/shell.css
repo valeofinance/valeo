@@ -112,6 +112,27 @@
 .grid { display: grid; gap: 16px; }
 .grid-2 { grid-template-columns: 1fr 1fr; }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* KPI-Kacheln mit Veränderungs-Indikator */
+.kpi-row { margin-bottom: 16px; }
+.kpi-delta { font-family: var(--font-plex-mono), monospace; font-size: 0.74rem; font-weight: 500; }
+.kpi-delta.up { color: var(--pos); }
+.kpi-delta.down { color: var(--neg); }
+.kpi-note { font-size: 0.72rem; color: var(--ink-soft); }
+
+/* Charts */
+.chart-grid .panel { min-width: 0; }
+.chart { width: 100%; height: auto; display: block; margin-top: 8px; overflow: visible; }
+.chart-axis { stroke: var(--line); stroke-width: 1; }
+.chart-grid line, .chart .chart-grid { stroke: rgba(223, 227, 219, 0.7); stroke-width: 1; stroke-dasharray: 3 4; }
+.chart-val {
+  font-family: var(--font-plex-mono), monospace; font-size: 12px; font-weight: 600;
+  fill: var(--ink);
+}
+.chart-lbl {
+  font-family: var(--font-plex-mono), monospace; font-size: 10px; fill: var(--ink-soft);
+}
 
 /* KPI tiles */
 .kpi-l { font-size: 0.76rem; color: var(--ink-soft); }
@@ -445,8 +466,11 @@
 }
 .fin-total .fin-acc { text-transform: none; letter-spacing: 0; color: var(--ink); }
 
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 720px) {
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .shell-brand .area { display: none; }
   .shell-nav { display: none; }
   .tbl .hide-sm { display: none; }
