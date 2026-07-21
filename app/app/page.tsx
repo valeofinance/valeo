@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import CockpitTodos, { type Todo } from "./CockpitTodos";
+import CockpitTodos, { type Todo, type StaffMember } from "./CockpitTodos";
 
 // Team-Cockpit: Übersicht über alle Mandanten (§ 5.5). Staff sieht per RLS
 // alles. Datenmodell siehe supabase/migrations/0001_core_schema.sql.
@@ -31,24 +31,30 @@ type CockpitClient = {
 export default async function Cockpit() {
   const supabase = await createClient();
 
-  const [{ data: clientsData }, { data: tasksData }, { data: todosData }] =
-    await Promise.all([
-      supabase
-        .from("clients")
-        .select(
-          "id, onboarding_status, deal:deals ( paket, wert, company:companies ( name, domain ) )"
-        )
-        .order("created_at", { ascending: true }),
-      supabase.from("tasks").select("client_id, status"),
-      supabase
-        .from("cockpit_todos")
-        .select("id, title, status, created_at")
-        .order("created_at", { ascending: true }),
-    ]);
+  const [
+    { data: clientsData },
+    { data: tasksData },
+    { data: todosData },
+    { data: staffData },
+  ] = await Promise.all([
+    supabase
+      .from("clients")
+      .select(
+        "id, onboarding_status, deal:deals ( paket, wert, company:companies ( name, domain ) )"
+      )
+      .order("created_at", { ascending: true }),
+    supabase.from("tasks").select("client_id, status"),
+    supabase
+      .from("cockpit_todos")
+      .select("id, title, status, due_at, assignee, created_at")
+      .order("created_at", { ascending: true }),
+    supabase.from("staff").select("user_id, name").order("name"),
+  ]);
 
   const clients = (clientsData ?? []) as unknown as CockpitClient[];
   const tasks = (tasksData ?? []) as { client_id: string; status: string }[];
   const todos = (todosData ?? []) as Todo[];
+  const staff = (staffData ?? []) as StaffMember[];
 
   const openByClient = new Map<string, number>();
   for (const t of tasks) {
@@ -138,7 +144,7 @@ export default async function Cockpit() {
         </div>
 
         <aside className="cockpit-aside">
-          <CockpitTodos initial={todos} />
+          <CockpitTodos initial={todos} staff={staff} />
         </aside>
       </div>
     </main>
