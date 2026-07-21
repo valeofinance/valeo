@@ -412,4 +412,11 @@ html {
   .landing .nav-links a:not(.btn) { display: none; }
   .landing section { padding: 56px 0; }
   .landing .hero { padding: 56px 0 48px; }
+
+  /* Hero-Buttons nebeneinander statt gestapelt */
+  .landing .hero-ctas { flex-wrap: nowrap; gap: 10px; align-items: stretch; }
+  .landing .hero-ctas .btn {
+    flex: 1 1 0; min-width: 0; text-align: center; padding: 12px 12px; font-size: 0.88rem;
+    display: flex; align-items: center; justify-content: center;
+  }
 }
