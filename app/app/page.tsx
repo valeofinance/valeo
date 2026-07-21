@@ -77,7 +77,7 @@ export default async function Cockpit() {
 
       <div className="cockpit-grid">
         <div className="cockpit-main">
-          <div className="grid grid-3" style={{ marginBottom: 16 }}>
+          <div className="grid grid-3 cockpit-kpis" style={{ marginBottom: 16 }}>
             <div className="panel">
               <div className="kpi-l">Mandanten gesamt</div>
               <div className="kpi-v">{clients.length}</div>

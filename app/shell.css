@@ -198,6 +198,7 @@
 .cockpit-aside {
   position: sticky;
   top: 82px; /* Topbar (62px) + Abstand */
+  min-width: 0; /* Grid-Item darf schrumpfen (sonst dehnt der Terminpicker die Spalte) */
 }
 .cockpit-aside .todos { display: flex; flex-direction: column; max-height: calc(100vh - 102px); }
 .cockpit-aside .todo-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; margin-top: 4px; }
@@ -229,7 +230,7 @@
   outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(33, 65, 240, 0.18);
 }
 .todo-add-row input {
-  flex: 1; font-family: inherit; font-size: 0.92rem; color: var(--ink);
+  flex: 1; min-width: 0; font-family: inherit; font-size: 0.92rem; color: var(--ink);
   padding: 11px 14px; border-radius: 11px;
   background: rgba(255, 255, 255, 0.55);
   -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
@@ -474,4 +475,11 @@
   .shell-brand .area { display: none; }
   .shell-nav { display: none; }
   .tbl .hide-sm { display: none; }
+
+  /* KPI-Kacheln kompakter statt hoher Einzelblöcke */
+  .kpi-row { grid-template-columns: 1fr 1fr; gap: 12px; }      /* Portal: 2×2 */
+  .cockpit-kpis { grid-template-columns: repeat(3, 1fr); gap: 10px; } /* Cockpit: 3 nebeneinander */
+  .kpi-row .panel, .cockpit-kpis .panel { padding: 16px 14px; }
+  .cockpit-kpis .kpi-l { font-size: 0.68rem; line-height: 1.25; }
+  .cockpit-kpis .kpi-v { font-size: 1.35rem; }
 }
